@@ -12,6 +12,7 @@ import Loading from '../Loading';
  *
  * RoutesList -> JobList -> {SearchForm, jobCard}
  */
+
 function JobList() {
 
   const [jobs, setjobs] = useState({
@@ -21,8 +22,8 @@ function JobList() {
 
   useEffect(function getjobsOnLoad() {
     async function getjobs() {
-      const jobs = await JoblyApi.getAllJobs();
-      console.log('jobsResp', jobs);
+      const jobs = await JoblyApi.getJobs();
+
       setjobs({
         jobs: jobs,
         isLoading: false
@@ -33,9 +34,9 @@ function JobList() {
 
   //Accepts formData { name: ... }
   async function search(job) {
-    console.log('job', job);
-    const searchedjobs = await JoblyApi.getAllJobs({title:job.name});
-    console.log('searchedjob', searchedjobs);
+    const data = {title:job.name};
+    const searchedjobs = await JoblyApi.getJobs(data);
+
     setjobs({
       jobs: searchedjobs,
       isLoading: false

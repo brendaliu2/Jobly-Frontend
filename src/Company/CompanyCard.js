@@ -8,13 +8,15 @@ import { Link } from 'react-router-dom';
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  */
 function CompanyCard({ company }) {
+  const { handle, name, description, logoUrl } = company;
+  
   return (
-    <Link to={`/companies/${company.handle}`} key={company.handle}>
+    <Link to={`/companies/${handle}`} key={handle}>
       <div className='CompanyCard'>
-        <b>{company.name}</b>
-        <p>{company.description}</p>
-        { company.logoUrl &&
-        <img src={company.logoUrl} alt={`${company.name}-logo`} />}
+        <b>{name}</b>
+        <p>{description}</p>
+        { logoUrl &&
+        <img src={logoUrl} alt={`${name}-logo`} />}
       </div>
     </Link>
   );

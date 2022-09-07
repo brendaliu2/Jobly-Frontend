@@ -21,7 +21,7 @@ function CompanyList() {
 
   useEffect(function getCompaniesOnLoad() {
     async function getCompanies() {
-      const companies = await JoblyApi.getAllCompanies();
+      const companies = await JoblyApi.getCompanies();
 
       setCompanies({
         companies: companies,
@@ -33,8 +33,7 @@ function CompanyList() {
 
   //Accepts formData { name: ... }
   async function search(company) {
-
-    const searchedCompanies = await JoblyApi.getAllCompanies(company);
+    const searchedCompanies = await JoblyApi.getCompanies(company);
 
     setCompanies({
       companies: searchedCompanies,
