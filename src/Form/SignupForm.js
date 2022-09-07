@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_FORM_DATA = {
   username: '',
@@ -20,6 +21,7 @@ const INITIAL_FORM_DATA = {
  */
 
 function SignupForm({ signup }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form input. */
@@ -33,10 +35,15 @@ function SignupForm({ signup }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
-    setFormData(INITIAL_FORM_DATA);
+    try {
+      await signup(formData);
+      navigate("/companies");
+    }
+    catch {
+
+    }
   }
 
   return (
@@ -83,7 +90,7 @@ function SignupForm({ signup }) {
       </div>
 
       <div className="mb-3">
-      <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input
           id="lastName"
           name="lastName"
@@ -96,7 +103,7 @@ function SignupForm({ signup }) {
       </div>
 
       <div className="mb-3">
-      <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           id="email"
           name="email"
@@ -104,7 +111,7 @@ function SignupForm({ signup }) {
           onChange={handleChange}
           value={formData.email}
           aria-label="email"
-          minLength = "6"
+          minLength="6"
           required
         />
       </div>

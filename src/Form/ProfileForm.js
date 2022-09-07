@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_FORM_DATA = {
   username: '',
@@ -20,6 +21,7 @@ const INITIAL_FORM_DATA = {
  */
 
 function ProfileForm({ update }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form input. */
@@ -33,10 +35,15 @@ function ProfileForm({ update }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    update(formData);
-    setFormData(INITIAL_FORM_DATA);
+    try {
+      await update(formData);
+      navigate("/companies");
+    }
+    catch {
+
+    }
   }
 
   return (

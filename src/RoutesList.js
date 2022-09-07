@@ -7,26 +7,24 @@ import SignupForm from './Form/SignupForm';
 import LoginForm from './Form/LoginForm';
 import ProfileForm from './Form/ProfileForm';
 
-/**Routes for Jobly
- * 
- */
+/** Routes for Jobly */
 
-
-function RoutesList() {
-
+function RoutesList({ signup, login, update }) {
 
   return (
     <div className="RoutesList">
 
       <Routes>
+        <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<HomePage />} />
+
         <Route path='/companies' element={<CompanyList />} />
         <Route path='/jobs' element={<JobList />} />
         <Route path='/companies/:handle' element={<CompanyDetail />} />
-        <Route path='/signup' element={<SignupForm />} />
-        <Route path='/login' element={<LoginForm />} />
-        <Route path='/profile' element={<ProfileForm />} />
-        <Route path='*' element={<Navigate to='/' />} />
+
+        <Route path='/signup' element={<SignupForm signup={signup} />} />
+        <Route path='/login' element={<LoginForm login={login} />} />
+        <Route path='/profile' element={<ProfileForm update={update} />} />
       </Routes>
 
     </div>
