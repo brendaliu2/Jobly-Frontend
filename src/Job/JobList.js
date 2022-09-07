@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import JoblyApi from '../utils/api';
-import SearchForm from '../SearchForm';
+import SearchForm from '../Form/SearchForm';
 import JobCardList from './JobCardList';
 import Loading from '../Loading';
 

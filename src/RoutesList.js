@@ -3,6 +3,9 @@ import HomePage from './Home/HomePage';
 import CompanyList from './Company/CompanyList';
 import JobList from './Job/JobList';
 import CompanyDetail from './Company/CompanyDetail';
+import SignupForm from './Form/SignupForm';
+import LoginForm from './Form/LoginForm';
+import ProfileForm from './Form/ProfileForm';
 
 /**Routes for Jobly
  * 
@@ -10,18 +13,21 @@ import CompanyDetail from './Company/CompanyDetail';
 
 
 function RoutesList() {
-  
-  
+
+
   return (
     <div className="RoutesList">
 
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/companies' element={<CompanyList />} />
-          <Route path='/jobs' element={<JobList />} />
-          <Route path='/companies/:handle' element={<CompanyDetail />} />
-          <Route path='*' element={<Navigate to='/' />}/>
-        </Routes>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/companies' element={<CompanyList />} />
+        <Route path='/jobs' element={<JobList />} />
+        <Route path='/companies/:handle' element={<CompanyDetail />} />
+        <Route path='/signup' element={<SignupForm />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/profile' element={<ProfileForm />} />
+        <Route path='*' element={<Navigate to='/' />} />
+      </Routes>
 
     </div>
   );

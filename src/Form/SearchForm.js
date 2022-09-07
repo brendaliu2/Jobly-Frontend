@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 /** Form for searching companies.
  *
  * Props:

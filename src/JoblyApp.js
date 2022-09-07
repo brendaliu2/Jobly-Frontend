@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import NavBar from './NavBar';
+import NavBar from './NavBar/NavBar';
 import RoutesList from './RoutesList';
 
 /**JoblyApp 

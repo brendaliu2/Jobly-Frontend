@@ -1,3 +1,4 @@
+import './JobCard.css'
 /**
  * Presentational Component for Job
  *
@@ -6,13 +7,19 @@
  * JobCardList -> Job Card
  */
 function JobCard({ job }) {
-  const { title, salary, equity } = job;
+  const { title, salary, equity, companyName } = job;
+
 
   return (
-    <div className="JobCard">
-      <b>{title}</b>
-      <p>Salary: {salary}</p>
-      <p>Equity: {equity}</p>
+    <div className="JobCard container">
+      <h6>{title}</h6>
+      <p>{companyName}</p>
+      <small>
+        <p>Salary: {salary}</p>
+      </small>
+      <small>
+        <p>Equity: {equity}</p>
+      </small>
     </div>
   );
 }

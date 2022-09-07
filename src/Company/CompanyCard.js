@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './CompanyCard.css';
 
 /**
  * Presentational Component for displaying each company
@@ -9,16 +10,20 @@ import { Link } from 'react-router-dom';
  */
 function CompanyCard({ company }) {
   const { handle, name, description, logoUrl } = company;
-  
+
   return (
-    <Link to={`/companies/${handle}`} key={handle}>
-      <div className='CompanyCard'>
-        <b>{name}</b>
-        <p>{description}</p>
-        { logoUrl &&
-        <img src={logoUrl} alt={`${name}-logo`} />}
-      </div>
-    </Link>
+    <div className='container m-2 companyCard'>
+      <Link to={`/companies/${handle}`} key={handle}>
+        <div className='CompanyCard'>
+          <h6>{name}
+            {logoUrl &&
+              <img className='logo float-end' src={logoUrl} alt={`${name}-logo`} />}
+          </h6>
+          <p>{description}</p>
+
+        </div>
+      </Link>
+    </div>
   );
 
 };
