@@ -2,10 +2,10 @@ import SearchForm from '../SearchForm';
 import JobCardList from './JobCardList';
 
 /**Creates list of jobs
- * 
+ *
  * Prop: None
- * State: 
- * 
+ * State:
+ *
  */
 function JobList(){
   return(

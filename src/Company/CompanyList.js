@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import JoblyApi from '../utils/api';
 import SearchForm from '../SearchForm';
 import CompanyCard from './CompanyCard';
-import Loading from '../Loading'
+import Loading from '../Loading';
 
 /**
  * List of Companies
- * 
+ *
  * Props: None
  * State: companies [{company}, ...]
- * 
+ *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  */
 function CompanyList() {
@@ -22,7 +22,7 @@ function CompanyList() {
   useEffect(function getCompaniesOnLoad() {
     async function getCompanies() {
       const companies = await JoblyApi.getAllCompanies();
-      console.log('companiesResp', companies)
+      // console.log('companiesResp', companies);
       setCompanies({
         companies: companies,
         isLoading: false
@@ -31,9 +31,11 @@ function CompanyList() {
     getCompanies();
   }, []);
 
-  //Accepts formData {name: ...}
+  //Accepts formData { name: ... }
   async function search(company) {
+    console.log('company', company);
     const searchedCompanies = await JoblyApi.getAllCompanies(company);
+    console.log('searchedCompany', searchedCompanies);
     setCompanies({
       companies: searchedCompanies,
       isLoading: false
@@ -44,9 +46,11 @@ function CompanyList() {
 
   return (
     <div className="CompanyList">
-      {/* <SearchForm search={search} /> */}
+      <SearchForm search={search} />
       <ul>
-        {companies.companies.map(company => <li>{company.handle}</li>)}
+        {companies.companies.map(company => (
+          <li key={company.handle}><CompanyCard company={company} /></li>
+        ))}
       </ul>
     </div>
   );
