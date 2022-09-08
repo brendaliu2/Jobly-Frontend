@@ -25,7 +25,7 @@ function ProfileForm({ update }) {
   const navigate = useNavigate();
   const { user } = useContext(userContext);
   console.log('user context', user)
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState(user);
 
   /** Update form input. */
   function handleChange(evt) {

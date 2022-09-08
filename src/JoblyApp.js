@@ -15,61 +15,74 @@ import jwt from 'jwt-decode';
 */
 
 function JoblyApp() {
-  const initialToken = localStorage.getItem('token') === 'undefined' ?
-    null :
-    localStorage.getItem('token');
+  const initialToken = localStorage.getItem('token');
+  console.log("initialtoken", initialToken);
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(initialToken);
-  console.log('user state', user)
-
+  console.log('user state', user);
+  console.log('token state', token);
 
   useEffect(function setLocalStorage() {
     async function getUserData() {
-      if (token) {
-        const user = jwt(token);
-        console.log('user decode token', user.username)
-        const userData = await JoblyApi.getUserInfo(user.username, token);
-        setUser(userData);
-      }
+      const user = jwt(token);
+      console.log('user decode token', user, "username", user.username);
+
+      JoblyApi.token = token;
+      const userData = await JoblyApi.getUserInfo(user.username);
+      console.log(userData);
+      setUser(userData);
     }
-    getUserData()
+
+    if (token) getUserData();
+
   }, [token]);
 
 
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
-    const user = jwt(token);
-    console.log("signup", user);
+    console.log("signup", token);
     setToken(token);
-    // setUser(user);
-    localStorage.setItem('token', token);
+    // localStorage.setItem('token', token);
   }
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);
-    const user = jwt(token);
-    console.log("login", user);
+    console.log("login", token);
     setToken(token);
-    // setUser(user);
-    localStorage.setItem('token', token);
+    // localStorage.setItem('token', token);
   }
 
   async function update(formData) {
-    const user = await JoblyApi.update(formData);
+    const username = formData.username;
+    let data = {};
+    for (let key in formData){
+      if(key !== 'username') {
+        data[key] = formData[key];
+      }
+    }
+    console.log(data);
+    const user = await JoblyApi.update(username, data);
     console.log("update", user);
     setUser(user);
+  }
+
+  function logout() {
+    console.log('logout');
+    setToken(null);
+    setUser(null);
   }
 
   return (
     <userContext.Provider value={{ user }}>
       <div className="JoblyApp">
         <BrowserRouter>
-          <NavBar />
+          <NavBar logout={logout} />
           <RoutesList
             signup={signup}
             login={login}
-            update={update} />
+            update={update}
+          />
         </BrowserRouter>
       </div>
     </userContext.Provider>

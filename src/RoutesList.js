@@ -9,7 +9,7 @@ import ProfileForm from './Form/ProfileForm';
 
 /** Routes for Jobly */
 
-function RoutesList({ signup, login, update }) {
+function RoutesList({ signup, login, update, logout }) {
 
   return (
     <div className="RoutesList">
