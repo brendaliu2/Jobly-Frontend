@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import JoblyApi from '../utils/api';
 import SearchForm from '../Form/SearchForm';
 import JobCardList from './JobCardList';
 import Loading from '../Loading';
+import userContext from '../Context/userContext';
+import { Navigate } from 'react-router-dom';
 
 /**
  * List of Job
@@ -14,7 +16,7 @@ import Loading from '../Loading';
  */
 
 function JobList() {
-
+  const { user } = useContext(userContext);
   const [jobs, setjobs] = useState({
     jobs: [],
     isLoading: true
@@ -29,12 +31,14 @@ function JobList() {
         isLoading: false
       });
     }
-    getjobs();
-  }, []);
+    user ? getjobs() : <Navigate to='/login' />;
+  }, [user]);
+
+
 
   //Accepts formData { name: ... }
   async function search(job) {
-    const data = {title:job.name};
+    const data = { title: job.name };
     const searchedjobs = await JoblyApi.getJobs(data);
 
     setjobs({
@@ -48,7 +52,7 @@ function JobList() {
   return (
     <div className="JobList">
       <SearchForm search={search} />
-      <JobCardList jobs = {jobs.jobs} />
+      <JobCardList jobs={jobs.jobs} />
     </div>
   );
 }

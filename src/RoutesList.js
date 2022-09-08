@@ -6,10 +6,17 @@ import CompanyDetail from './Company/CompanyDetail';
 import SignupForm from './Form/SignupForm';
 import LoginForm from './Form/LoginForm';
 import ProfileForm from './Form/ProfileForm';
+import { useContext } from "react";
+import userContext from './Context/userContext';
 
-/** Routes for Jobly */
+/** Routes for Jobly 
+ * 
+ * Context: user 
+ *  {username, firstName, lastName, email, isAdmin, applications:[]}
+*/
 
-function RoutesList({ signup, login, update, logout }) {
+function RoutesList({ signup, login, update }) {
+  const { user } = useContext(userContext);
 
   return (
     <div className="RoutesList">

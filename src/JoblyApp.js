@@ -16,59 +16,56 @@ import jwt from 'jwt-decode';
 
 function JoblyApp() {
   const initialToken = localStorage.getItem('token');
-  console.log("initialtoken", initialToken);
-
+  console.log('initial token', initialToken);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(initialToken);
-  console.log('user state', user);
-  console.log('token state', token);
+  console.log('token state', token)
+  console.log('user state', user)
 
-  useEffect(function setLocalStorage() {
+
+  useEffect(function getUserInfoAndSetLocalStorage() {
+    function setLocalStorage() {
+      localStorage.setItem('token', token);
+    }
+
     async function getUserData() {
       const user = jwt(token);
-      console.log('user decode token', user, "username", user.username);
+      // console.log('user decode token', user, "username", user.username);
 
       JoblyApi.token = token;
       const userData = await JoblyApi.getUserInfo(user.username);
-      console.log(userData);
+      // console.log(userData);
       setUser(userData);
     }
 
-    if (token) getUserData();
-
+    if (token) {
+      setLocalStorage();
+      getUserData();
+    }
   }, [token]);
 
 
   async function signup(formData) {
     const token = await JoblyApi.signup(formData);
-    console.log("signup", token);
     setToken(token);
-    // localStorage.setItem('token', token);
+
   }
 
   async function login(formData) {
     const token = await JoblyApi.login(formData);
-    console.log("login", token);
     setToken(token);
-    // localStorage.setItem('token', token);
+
   }
 
   async function update(formData) {
-    const username = formData.username;
-    let data = {};
-    for (let key in formData){
-      if(key !== 'username') {
-        data[key] = formData[key];
-      }
-    }
-    console.log(data);
-    const user = await JoblyApi.update(username, data);
-    console.log("update", user);
-    setUser(user);
+    delete formData.username;
+    const updatedUser = await JoblyApi.update(user.username, formData);
+    setUser(updatedUser);
   }
 
   function logout() {
-    console.log('logout');
+
+    localStorage.clear();
     setToken(null);
     setUser(null);
   }

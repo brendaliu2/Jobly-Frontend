@@ -1,14 +1,7 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import userContext from '../Context/userContext';
 import { useNavigate } from "react-router-dom";
-import JoblyApi from '../utils/api';
 
-const INITIAL_FORM_DATA = {
-  username: '',
-  firstName: '',
-  lastName: '',
-  email: ''
-};
 
 /** Form for displaying user profile.
  *
@@ -17,15 +10,24 @@ const INITIAL_FORM_DATA = {
  *
  * State:
  * - formData
+ * 
+ * Context: user 
+ *  {username, firstName, lastName, email, isAdmin, applications:[]}
  *
- * RoutesList -> ProfileForm ->
+ * RoutesList -> ProfileForm -> 
  */
 
 function ProfileForm({ update }) {
   const navigate = useNavigate();
   const { user } = useContext(userContext);
-  console.log('user context', user)
-  const [formData, setFormData] = useState(user);
+  // console.log('user context', user);
+
+  const [formData, setFormData] = useState({
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email
+  });
 
   /** Update form input. */
   function handleChange(evt) {
@@ -41,6 +43,7 @@ function ProfileForm({ update }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
+
       await update(formData);
       navigate("/companies");
     }

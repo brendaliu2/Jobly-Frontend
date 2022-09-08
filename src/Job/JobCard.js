@@ -1,4 +1,6 @@
-import './JobCard.css'
+import './JobCard.css';
+import { useContext } from "react";
+import userContext from '../Context/userContext';
 /**
  * Presentational Component for Job
  *
@@ -7,6 +9,7 @@ import './JobCard.css'
  * JobCardList -> Job Card
  */
 function JobCard({ job }) {
+  const { user } = useContext(userContext);
   const { title, salary, equity, companyName } = job;
 
 

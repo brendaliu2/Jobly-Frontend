@@ -1,14 +1,20 @@
 import { Link } from 'react-router-dom';
 import './CompanyCard.css';
+import { useContext } from "react";
+import userContext from '../Context/userContext';
 
 /**
  * Presentational Component for displaying each company
  *
  * Props: company: { handle, name, description }
+ * 
+ * Context: user 
+ *  {username, firstName, lastName, email, isAdmin, applications:[]}
  *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  */
 function CompanyCard({ company }) {
+  const { user } = useContext(userContext);
   const { handle, name, description, logoUrl } = company;
 
   return (
