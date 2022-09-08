@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import userContext from '../Context/userContext';
 import { useNavigate } from "react-router-dom";
+import JoblyApi from '../utils/api';
 
 const INITIAL_FORM_DATA = {
   username: '',
-  password: '',
   firstName: '',
   lastName: '',
   email: ''
@@ -22,6 +23,8 @@ const INITIAL_FORM_DATA = {
 
 function ProfileForm({ update }) {
   const navigate = useNavigate();
+  const { user } = useContext(userContext);
+  console.log('user context', user)
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form input. */
@@ -77,7 +80,7 @@ function ProfileForm({ update }) {
       </div>
 
       <div className="mb-3">
-      <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input
           id="lastName"
           name="lastName"
@@ -90,7 +93,7 @@ function ProfileForm({ update }) {
       </div>
 
       <div className="mb-3">
-      <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           id="email"
           name="email"
