@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import userContext from '../Context/userContext';
 
 const INITIAL_FORM_DATA = {
   username: '',
@@ -18,7 +20,7 @@ const INITIAL_FORM_DATA = {
  */
 
 function LoginForm({ login }) {
-  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form input. */
@@ -36,11 +38,13 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      navigate("/companies");
+      console.log('before navigate');
+      return <Navigate to="/companies" />;
     }
-    catch {
-
+    catch (err) {
+      console.log(err);
     }
+    // return <Navigate to="/companies" />;
   }
 
   return (

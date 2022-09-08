@@ -4,32 +4,30 @@ import SearchForm from '../Form/SearchForm';
 import CompanyCard from './CompanyCard';
 import Loading from '../Loading';
 import userContext from '../Context/userContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 /**
  * List of Companies
  *
  * Props: None
  * State: companies [{company}, ...]
- * 
- * Context: user 
+ *
+ * Context: user
  *  {username, firstName, lastName, email, isAdmin, applications:[]}
  *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  */
 function CompanyList() {
   const { user } = useContext(userContext);
-  console.log('context', user)
-  
+  console.log('usercontext', user);
+
   const [companies, setCompanies] = useState({
     companies: [],
     isLoading: true
   });
 
-  
   useEffect(function getCompaniesOnLoad() {
     async function getCompanies() {
-
       const companies = await JoblyApi.getCompanies();
 
       setCompanies({
@@ -38,11 +36,10 @@ function CompanyList() {
       });
     }
 
-    user ? getCompanies(): <Navigate to='/login' />;
+    getCompanies();
 
-  }, [user]);
-  
-  
+  }, []);
+
   //Accepts formData { name: ... }
   async function search(company) {
     const searchedCompanies = await JoblyApi.getCompanies(company);
@@ -53,6 +50,7 @@ function CompanyList() {
     });
   }
 
+  // if (!user) return <Navigate to="/login" />;
   if (companies.isLoading) return <Loading />;
 
   return (

@@ -9,14 +9,15 @@ import ProfileForm from './Form/ProfileForm';
 import { useContext } from "react";
 import userContext from './Context/userContext';
 
-/** Routes for Jobly 
- * 
- * Context: user 
+/** Routes for Jobly
+ *
+ * Context: user
  *  {username, firstName, lastName, email, isAdmin, applications:[]}
 */
 
 function RoutesList({ signup, login, update }) {
   const { user } = useContext(userContext);
+  console.log('user', user)
 
   return (
     <div className="RoutesList">
@@ -25,9 +26,14 @@ function RoutesList({ signup, login, update }) {
         <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<HomePage />} />
 
-        <Route path='/companies' element={<CompanyList />} />
-        <Route path='/jobs' element={<JobList />} />
-        <Route path='/companies/:handle' element={<CompanyDetail />} />
+        {user &&
+          <>
+          {console.log('user', user)};
+            <Route path='/companies' element={<CompanyList />} />
+            <Route path='/jobs' element={<JobList />} />
+            <Route path='/companies/:handle' element={<CompanyDetail />} />
+          </>
+        }
 
         <Route path='/signup' element={<SignupForm signup={signup} />} />
         <Route path='/login' element={<LoginForm login={login} />} />
