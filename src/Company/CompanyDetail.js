@@ -43,7 +43,7 @@ function CompanyDetail() {
       });
     }
 
-    user ? getCompany() : <Navigate to='/login' />;
+    getCompany()
 
   }, [user, companyHandle]);
 

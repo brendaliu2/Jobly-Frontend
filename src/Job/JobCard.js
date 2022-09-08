@@ -9,9 +9,10 @@ import userContext from '../Context/userContext';
  * JobCardList -> Job Card
  */
 function JobCard({ job }) {
-  const { user } = useContext(userContext);
-  const { title, salary, equity, companyName } = job;
+  const { user, apply } = useContext(userContext);
+  const { id, title, salary, equity, companyName } = job;
 
+  const hasApplied = user.applications.includes(id);
 
   return (
     <div className="JobCard container">
@@ -23,6 +24,11 @@ function JobCard({ job }) {
       <small>
         <p>Equity: {equity}</p>
       </small>
+      {!hasApplied ?
+        <button onClick={() => apply(id)} className='btn btn-primary'>Apply</button>
+        :
+        <button disabled className='btn btn-primary'>Applied</button>
+      }
     </div>
   );
 }

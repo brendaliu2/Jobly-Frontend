@@ -31,8 +31,8 @@ function JobList() {
         isLoading: false
       });
     }
-    user ? getjobs() : <Navigate to='/login' />;
-  }, [user]);
+    getjobs()
+  }, []);
 
 
 

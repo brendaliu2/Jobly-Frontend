@@ -15,8 +15,8 @@ import userContext from './Context/userContext';
  *  {username, firstName, lastName, email, isAdmin, applications:[]}
 */
 
-function RoutesList({ signup, login, update }) {
-  const { user } = useContext(userContext);
+function RoutesList({ signup, login, update, user }) {
+  // const { user } = useContext(userContext);
   console.log('user', user)
 
   return (
@@ -28,16 +28,15 @@ function RoutesList({ signup, login, update }) {
 
         {user &&
           <>
-          {console.log('user', user)};
             <Route path='/companies' element={<CompanyList />} />
             <Route path='/jobs' element={<JobList />} />
             <Route path='/companies/:handle' element={<CompanyDetail />} />
+            <Route path='/profile' element={<ProfileForm update={update} />} />
           </>
         }
 
         <Route path='/signup' element={<SignupForm signup={signup} />} />
         <Route path='/login' element={<LoginForm login={login} />} />
-        <Route path='/profile' element={<ProfileForm update={update} />} />
       </Routes>
 
     </div>

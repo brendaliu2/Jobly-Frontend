@@ -29,7 +29,7 @@ function JoblyApp() {
       const user = jwt(token);
       JoblyApi.token = token;
       const userData = await JoblyApi.getUserInfo(user.username);
-      setUser(userData);
+      setUser({...userData});
     }
 
     if (token) {
@@ -59,9 +59,15 @@ function JoblyApp() {
     setToken(null);
     setUser(null);
   }
+  
+  async function apply(id){
+    const updatedUser = await JoblyApi.applyToJob(user.username, id);
+
+    setUser({...updatedUser});
+  }
 
   return (
-    <userContext.Provider value={{ user }}>
+    <userContext.Provider value={{ user, apply }}>
       <div className="JoblyApp">
         <BrowserRouter>
           <NavBar logout={logout} />
@@ -69,6 +75,7 @@ function JoblyApp() {
             signup={signup}
             login={login}
             update={update}
+            user={user}
           />
         </BrowserRouter>
       </div>

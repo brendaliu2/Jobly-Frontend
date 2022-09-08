@@ -4,7 +4,6 @@ import SearchForm from '../Form/SearchForm';
 import CompanyCard from './CompanyCard';
 import Loading from '../Loading';
 import userContext from '../Context/userContext';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 /**
  * List of Companies
@@ -19,7 +18,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
  */
 function CompanyList() {
   const { user } = useContext(userContext);
-  console.log('usercontext', user);
+
 
   const [companies, setCompanies] = useState({
     companies: [],

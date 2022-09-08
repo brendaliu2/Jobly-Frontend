@@ -20,7 +20,7 @@ const INITIAL_FORM_DATA = {
  */
 
 function LoginForm({ login }) {
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   /** Update form input. */
@@ -38,13 +38,11 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      console.log('before navigate');
-      return <Navigate to="/companies" />;
+      navigate('/companies')
     }
     catch (err) {
       console.log(err);
     }
-    // return <Navigate to="/companies" />;
   }
 
   return (
