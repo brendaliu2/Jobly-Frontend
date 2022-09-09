@@ -23,6 +23,7 @@ const INITIAL_FORM_DATA = {
 function SignupForm({ signup }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [formError, setformError] = useState([]);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -41,8 +42,8 @@ function SignupForm({ signup }) {
       await signup(formData);
       navigate("/companies");
     }
-    catch {
-
+    catch (err) {
+      setformError([...err]);
     }
   }
 
@@ -115,7 +116,11 @@ function SignupForm({ signup }) {
           required
         />
       </div>
-
+      {formError.length !== 0 &&
+        <div className='alert alert-danger'>
+          {formError.map(error => <p>{error}</p>)}
+        </div>
+      }
       <div className="mb-3">
         <button className="btn-primary btn SignupForm-addBtn">
           Submit

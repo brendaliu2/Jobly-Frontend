@@ -22,6 +22,7 @@ const INITIAL_FORM_DATA = {
 function LoginForm({ login }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [formError, setformError] = useState([]);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -38,10 +39,12 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      navigate('/companies')
+      navigate('/companies');
     }
     catch (err) {
       console.log(err);
+      // console.log(formError.length === 0)
+      setformError([err]);
     }
   }
 
@@ -74,7 +77,11 @@ function LoginForm({ login }) {
           required
         />
       </div>
-
+      {formError.length !== 0 &&
+        <div className='alert alert-danger'>
+          <p>{formError[0]}</p>
+        </div>
+      }
       <div className="mb-3">
         <button className="btn-primary btn LoginForm-addBtn">
           Submit

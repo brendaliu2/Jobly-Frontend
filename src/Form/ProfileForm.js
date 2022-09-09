@@ -29,6 +29,8 @@ function ProfileForm({ update }) {
     email: user.email
   });
 
+  const [formError, setFormError] = useState([]);
+
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -47,8 +49,8 @@ function ProfileForm({ update }) {
       await update(formData);
       navigate("/companies");
     }
-    catch {
-
+    catch (err) {
+      setFormError([...err]);
     }
   }
 
@@ -107,6 +109,12 @@ function ProfileForm({ update }) {
           required
         />
       </div>
+
+      {formError.length !== 0 &&
+        <div className='alert alert-danger'>
+          {formError.map(error => <p>{error}</p>)}
+        </div>
+      }
 
       <div className="mb-3">
         <button className="btn-primary btn ProfileForm-addBtn">

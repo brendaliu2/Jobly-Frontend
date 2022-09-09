@@ -15,9 +15,9 @@ import userContext from './Context/userContext';
  *  {username, firstName, lastName, email, isAdmin, applications:[]}
 */
 
-function RoutesList({ signup, login, update, user }) {
-  // const { user } = useContext(userContext);
-  console.log('user', user)
+function RoutesList({ signup, login, update }) {
+  const { user } = useContext(userContext);
+  // console.log('user', user)
 
   return (
     <div className="RoutesList">
