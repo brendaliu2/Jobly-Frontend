@@ -7,10 +7,6 @@
     margin-left: 3rem;
 }
 
-h6{
-    margin-top: 0;
-}
-
 .companyCard{
     color: black;
     /* background-color: white; */
@@ -21,7 +17,15 @@ h6{
     text-align:left;
     /* border: 1px black solid; */
 }
+/* 
+h6, p {
+    color:black
+} */
 
-a{
-    color: black;
+div.CompanyCard > :is(p, h6){
+    color:black
+}
+
+div.CompanyCard:hover > :is(p, h6){
+    color:red
 }

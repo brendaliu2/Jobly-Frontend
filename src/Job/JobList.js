@@ -23,7 +23,7 @@ function JobList() {
 
   useEffect(function getjobsOnLoad() {
     console.log("inside JobListing useEffect");
-    
+
     async function getjobs() {
       const jobs = await JoblyApi.getJobs();
 
@@ -33,7 +33,7 @@ function JobList() {
       });
     }
 
-    getjobs()
+    getjobs();
   }, []);
 
   //Accepts formData { name: ... }
@@ -50,11 +50,19 @@ function JobList() {
   if (jobs.isLoading) return <Loading />;
 
   return (
-    <div className="JobList">
-      <SearchForm search={search} />
-      <JobCardList jobs={jobs.jobs} />
+    <div className="JobList container-fluid p-2">
+      <div className='row justify-content-center'>
+        <div className='col-8'>
+          <SearchForm search={search} />
+        </div>
+      </div>
+      <div className='row justify-content-center'>
+        <div className='col'>
+          <JobCardList jobs={jobs.jobs} />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default JobList;
+export default JobList;;

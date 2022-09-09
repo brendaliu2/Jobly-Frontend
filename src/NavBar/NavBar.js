@@ -9,18 +9,18 @@ function NavBar({ logout }) {
 
   return (
     <nav className="NavBar navbar navbar-light bg-light">
-      <NavLink to='/'>Jobly</NavLink>
+      <NavLink className='navLink' to='/'>Jobly</NavLink>
       {user && <>
-        <NavLink to='/companies'>Companies</NavLink>
-        <NavLink to='/jobs'>Jobs</NavLink>
-        <NavLink to='/profile'>Profile</NavLink>
-        <NavLink to='/' onClick={logout}>Logout {user.username}</NavLink>
+        <NavLink className='navLink' to='/companies'>Companies</NavLink>
+        <NavLink className='navLink' to='/jobs'>Jobs</NavLink>
+        <NavLink className='navLink' to='/profile'>Profile</NavLink>
+        <NavLink className='navLink' to='/' onClick={logout}>Logout {user.username}</NavLink>
       </>
       }
       {!user &&
         <>
-          <NavLink to='/signup'>Signup</NavLink>
-          <NavLink to='/login'>Login</NavLink>
+          <NavLink className='navLink' to='/signup'>Signup</NavLink>
+          <NavLink className='navLink' to='/login'>Login</NavLink>
         </>
       }
     </nav>

@@ -1,4 +1,8 @@
+.navLink {
+    color:black;
+    text-decoration: none;
+}
+
 .active {
     color: red;
 }
-

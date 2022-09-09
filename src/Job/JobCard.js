@@ -14,21 +14,20 @@ function JobCard({ job }) {
 
   const hasApplied = user.applications.includes(id);
 
+
   return (
-    <div className="JobCard container">
+    <div className="JobCard container shadow p-3 mb-3 bg-white rounded">
       <h6>{title}</h6>
       <p>{companyName}</p>
-      <small>
-        <p>Salary: {salary}</p>
-      </small>
-      <small>
-        <p>Equity: {equity}</p>
-      </small>
-      {!hasApplied ?
-        <button onClick={() => apply(id)} className='btn btn-primary'>Apply</button>
-        :
-        <button disabled className='btn btn-primary'>Applied</button>
-      }
+      <p>Salary: {salary}</p>
+      <p>Equity: {equity}</p>
+
+      <button
+        onClick={() => { apply(id); }}
+        disabled={hasApplied}
+        className='btn btn-primary'>{hasApplied ? "Applied" : "Apply"}
+      </button>
+
     </div>
   );
 }

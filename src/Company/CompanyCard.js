@@ -18,7 +18,7 @@ function CompanyCard({ company }) {
   const { handle, name, description, logoUrl } = company;
 
   return (
-    <div className='container m-2 companyCard'>
+    <div className='container m-2 companyCard shadow p-3 mb-3 bg-white rounded'>
       <Link to={`/companies/${handle}`} key={handle}>
         <div className='CompanyCard'>
           <h6>{name}

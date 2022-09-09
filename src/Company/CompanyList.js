@@ -26,7 +26,7 @@ function CompanyList() {
 
   useEffect(function getCompaniesOnLoad() {
     console.log("inside CompanyList useEffect");
-    
+
     async function getCompanies() {
       const companies = await JoblyApi.getCompanies();
 
@@ -52,13 +52,21 @@ function CompanyList() {
   if (companies.isLoading) return <Loading />;
 
   return (
-    <div className="CompanyList">
-      <SearchForm search={search} />
-      <ul>
-        {companies.companies.map(company => (
-          <li key={company.handle}><CompanyCard company={company} /></li>
-        ))}
-      </ul>
+    <div className="CompanyList container-fluid p-2">
+      <div className='row justify-content-center'>
+        <div className='col-8'>
+          <SearchForm search={search} />
+        </div>
+      </div>
+      <div className='row justify-content-center'>
+        <div className='col'>
+          <ul>
+            {companies.companies.map(company => (
+              <li key={company.handle}><CompanyCard company={company} /></li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
