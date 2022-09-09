@@ -116,11 +116,13 @@ function SignupForm({ signup }) {
           required
         />
       </div>
+
       {formError.length !== 0 &&
         <div className='alert alert-danger'>
-          {formError.map(error => <p>{error}</p>)}
+          {formError.map((error, idx) => <p key={idx}>{error}</p>)}
         </div>
       }
+      
       <div className="mb-3">
         <button className="btn-primary btn SignupForm-addBtn">
           Submit

@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import userContext from '../Context/userContext';
 import { useNavigate } from "react-router-dom";
 
-
 /** Form for displaying user profile.
  *
  * Props:
@@ -10,17 +9,17 @@ import { useNavigate } from "react-router-dom";
  *
  * State:
  * - formData
- * 
- * Context: user 
+ *
+ * Context: user
  *  {username, firstName, lastName, email, isAdmin, applications:[]}
  *
- * RoutesList -> ProfileForm -> 
+ * RoutesList -> ProfileForm ->
  */
 
 function ProfileForm({ update }) {
   const navigate = useNavigate();
   const { user } = useContext(userContext);
-  // console.log('user context', user);
+  const [formError, setFormError] = useState([]);
 
   const [formData, setFormData] = useState({
     username: user.username,
@@ -28,8 +27,6 @@ function ProfileForm({ update }) {
     lastName: user.lastName,
     email: user.email
   });
-
-  const [formError, setFormError] = useState([]);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -45,7 +42,6 @@ function ProfileForm({ update }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-
       await update(formData);
       navigate("/companies");
     }
@@ -112,7 +108,7 @@ function ProfileForm({ update }) {
 
       {formError.length !== 0 &&
         <div className='alert alert-danger'>
-          {formError.map(error => <p>{error}</p>)}
+          {formError.map((error, idx) => <p key={idx}>{error}</p>)}
         </div>
       }
 

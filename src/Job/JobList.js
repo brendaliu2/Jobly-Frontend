@@ -1,10 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import JoblyApi from '../utils/api';
 import SearchForm from '../Form/SearchForm';
 import JobCardList from './JobCardList';
 import Loading from '../Loading';
-import userContext from '../Context/userContext';
-import { Navigate } from 'react-router-dom';
 
 /**
  * List of Job
@@ -16,13 +14,16 @@ import { Navigate } from 'react-router-dom';
  */
 
 function JobList() {
-  const { user } = useContext(userContext);
+  console.log("JobListing");
+
   const [jobs, setjobs] = useState({
     jobs: [],
     isLoading: true
   });
 
   useEffect(function getjobsOnLoad() {
+    console.log("inside JobListing useEffect");
+    
     async function getjobs() {
       const jobs = await JoblyApi.getJobs();
 
@@ -31,10 +32,9 @@ function JobList() {
         isLoading: false
       });
     }
+
     getjobs()
   }, []);
-
-
 
   //Accepts formData { name: ... }
   async function search(job) {

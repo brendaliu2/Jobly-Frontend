@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 /** Form for searching companies.
  *
  * Props:
@@ -13,7 +12,7 @@ import { useState } from "react";
  */
 
 function SearchForm({ search }) {
-  const [formData, setFormData] = useState({name: ""});
+  const [formData, setFormData] = useState({ name: "" });
 
   /** Update form input. */
   function handleChange(evt) {
@@ -29,31 +28,31 @@ function SearchForm({ search }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     search(formData);
-    setFormData({name: ""});
+    setFormData({ name: "" });
   }
 
   return (
-      <form className="SearchForm" onSubmit={handleSubmit}>
+    <form className="SearchForm" onSubmit={handleSubmit}>
 
-        <div className="mb-3">
-          <input
-              id="name"
-              name="name"
-              className="form-control"
-              placeholder="Enter search term.."
-              onChange={handleChange}
-              value={formData.name}
-              aria-label="name"
-          />
-        </div>
+      <div className="mb-3">
+        <input
+          id="name"
+          name="name"
+          className="form-control"
+          placeholder="Enter search term.."
+          onChange={handleChange}
+          value={formData.name}
+          aria-label="name"
+        />
+      </div>
 
-        <div className="mb-3">
-          <button className="btn-primary btn SearchForm-addBtn">
-            Submit
-          </button>
-        </div>
+      <div className="mb-3">
+        <button className="btn-primary btn SearchForm-addBtn">
+          Submit
+        </button>
+      </div>
 
-      </form>
+    </form>
   );
 }
 

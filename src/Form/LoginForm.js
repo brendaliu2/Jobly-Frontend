@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
-import { useContext } from "react";
-import userContext from '../Context/userContext';
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_FORM_DATA = {
   username: '',
@@ -43,7 +41,6 @@ function LoginForm({ login }) {
     }
     catch (err) {
       console.log(err);
-      // console.log(formError.length === 0)
       setformError([err]);
     }
   }
@@ -77,6 +74,7 @@ function LoginForm({ login }) {
           required
         />
       </div>
+
       {formError.length !== 0 &&
         <div className='alert alert-danger'>
           <p>{formError[0]}</p>

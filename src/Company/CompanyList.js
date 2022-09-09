@@ -1,9 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import JoblyApi from '../utils/api';
 import SearchForm from '../Form/SearchForm';
 import CompanyCard from './CompanyCard';
 import Loading from '../Loading';
-import userContext from '../Context/userContext';
 
 /**
  * List of Companies
@@ -16,9 +15,9 @@ import userContext from '../Context/userContext';
  *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  */
-function CompanyList() {
-  const { user } = useContext(userContext);
 
+function CompanyList() {
+  console.log("CompanyListing");
 
   const [companies, setCompanies] = useState({
     companies: [],
@@ -26,6 +25,8 @@ function CompanyList() {
   });
 
   useEffect(function getCompaniesOnLoad() {
+    console.log("inside CompanyList useEffect");
+    
     async function getCompanies() {
       const companies = await JoblyApi.getCompanies();
 
@@ -36,7 +37,6 @@ function CompanyList() {
     }
 
     getCompanies();
-
   }, []);
 
   //Accepts formData { name: ... }
@@ -49,7 +49,6 @@ function CompanyList() {
     });
   }
 
-  // if (!user) return <Navigate to="/login" />;
   if (companies.isLoading) return <Loading />;
 
   return (
