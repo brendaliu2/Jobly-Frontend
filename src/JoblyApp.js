@@ -80,7 +80,9 @@ function JoblyApp() {
   async function apply(id){
     const updatedUser = await JoblyApi.applyToJob(user.data.username, id);
 
-    setUser({...updatedUser});
+    setUser({
+      isLoading:false,
+      data:updatedUser});
   }
   if (user.isLoading) return <Loading />;
   
