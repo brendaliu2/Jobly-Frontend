@@ -46,47 +46,56 @@ function LoginForm({ login }) {
   }
 
   return (
-    <form className="LoginForm" onSubmit={handleSubmit}>
+    <div className="container">
+      <div className="row mt-5">
+        <div className="col"></div>
+        <div className="col-md-8">
+          <form className="LoginForm" onSubmit={handleSubmit}>
 
-      <div className="mb-3">
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          name="username"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.username}
-          aria-label="username"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.username}
+                aria-label="username"
+                required
+              />
+            </div>
 
-      <div className="mb-3">
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.password}
-          aria-label="password"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.password}
+                aria-label="password"
+                required
+              />
+            </div>
 
-      {formError.length !== 0 &&
-        <div className='alert alert-danger'>
-          <p>{formError[0]}</p>
+            {formError.length !== 0 &&
+              <div className='alert alert-danger'>
+                <p>{formError[0]}</p>
+              </div>
+            }
+            <div className="mb-3">
+              <button className="btn-primary btn LoginForm-addBtn">
+                Submit
+              </button>
+            </div>
+
+          </form>
         </div>
-      }
-      <div className="mb-3">
-        <button className="btn-primary btn LoginForm-addBtn">
-          Submit
-        </button>
+        <div className="col"></div>
       </div>
+    </div>
 
-    </form>
   );
 }
 

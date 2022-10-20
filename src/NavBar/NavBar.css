@@ -1,8 +1,17 @@
 .navLink {
     color:black;
     text-decoration: none;
+    padding: 10px;
+    font-size: 1.25em;
 }
 
-.active {
-    color: red;
+.active,
+.navLink:hover {
+    color: #e63946;
+    font-weight: bold;
+    text-decoration: underline 3px black;
+}
+
+.brand{
+    font-size: 2em;
 }

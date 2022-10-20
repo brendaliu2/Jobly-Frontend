@@ -48,88 +48,96 @@ function SignupForm({ signup }) {
   }
 
   return (
-    <form className="SignupForm" onSubmit={handleSubmit}>
+    <div className="container">
+      <div className="row mt-5">
+        <div className="col"></div>
+        <div className="col-md-8">
+          <form className="SignupForm" onSubmit={handleSubmit}>
 
-      <div className="mb-3">
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          name="username"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.username}
-          aria-label="username"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.username}
+                aria-label="username"
+                required
+              />
+            </div>
 
-      <div className="mb-3">
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.password}
-          aria-label="password"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.password}
+                aria-label="password"
+                required
+              />
+            </div>
 
-      <div className="mb-3">
-        <label htmlFor="firstName">First Name</label>
-        <input
-          id="firstName"
-          name="firstName"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.firstName}
-          aria-label="firstName"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.firstName}
+                aria-label="firstName"
+                required
+              />
+            </div>
 
-      <div className="mb-3">
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          id="lastName"
-          name="lastName"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.lastName}
-          aria-label="lastName"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.lastName}
+                aria-label="lastName"
+                required
+              />
+            </div>
 
-      <div className="mb-3">
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          className="form-control"
-          onChange={handleChange}
-          value={formData.email}
-          aria-label="email"
-          minLength="6"
-          required
-        />
-      </div>
+            <div className="mb-3">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                className="form-control"
+                onChange={handleChange}
+                value={formData.email}
+                aria-label="email"
+                minLength="6"
+                required
+              />
+            </div>
 
-      {formError.length !== 0 &&
-        <div className='alert alert-danger'>
-          {formError.map((error, idx) => <p key={idx}>{error}</p>)}
+            {formError.length !== 0 &&
+              <div className='alert alert-danger'>
+                {formError.map((error, idx) => <p key={idx}>{error}</p>)}
+              </div>
+            }
+
+            <div className="mb-3">
+              <button className="btn-primary btn SignupForm-addBtn">
+                Submit
+              </button>
+            </div>
+
+          </form>
         </div>
-      }
-      
-      <div className="mb-3">
-        <button className="btn-primary btn SignupForm-addBtn">
-          Submit
-        </button>
+        <div className="col"></div>
       </div>
-
-    </form>
+    </div>
   );
 }
 
