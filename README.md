@@ -5,7 +5,7 @@ An Indeed site clone where users can create accounts, search for companies and a
 
 ## Run on your machine
 
-You need to clone the frontend and backend to run simultaneous on different ports.
+You need to clone the frontend and backend to run simultaneously on different ports.
 
 ```
 git clone https://github.com/brendaliu2/Jobly-Frontend.git
