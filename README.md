@@ -5,7 +5,7 @@
 
 ![JoblyDemoGif](https://user-images.githubusercontent.com/104796562/199823060-f2e17b09-0b66-4960-86aa-e2916e21abd9.gif)
 
-- [demo](https://bjl-jobly-frontend.surge.sh/)
+[Demo](https://bjl-jobly-frontend.surge.sh/)
 
 ## Run on your machine
 
