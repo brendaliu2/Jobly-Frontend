@@ -5,9 +5,11 @@
 
 ![JoblyDemoGif](https://user-images.githubusercontent.com/104796562/199823060-f2e17b09-0b66-4960-86aa-e2916e21abd9.gif)
 
+- [demo](https://bjl-jobly-frontend.surge.sh/)
+
 ## Run on your machine
 
-You need to clone the frontend and backend to run simultaneously on different ports.
+you'll need to clone the frontend and backend to run simultaneously on different ports.
 
 ```
 git clone https://github.com/brendaliu2/Jobly-Frontend.git
@@ -19,6 +21,7 @@ Backend: `nodemon` set to port 3001
 
 ## Future Features to Add
 
-* Thorough Testing
-* Live Search
+* thorough testing
+* live search
+* ability to change passwords
 
