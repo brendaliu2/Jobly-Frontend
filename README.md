@@ -1,7 +1,9 @@
-# Jobly
+# 💼 Jobly
 
-Created with React.
-An Indeed site clone where users can create accounts, search for companies and apply for jobs.
+- created with react (paired with a restful api in the back)
+- a job searching app where users can create accounts, search for companies and apply for jobs.
+
+![JoblyDemoGif](https://user-images.githubusercontent.com/104796562/199823060-f2e17b09-0b66-4960-86aa-e2916e21abd9.gif)
 
 ## Run on your machine
 
