@@ -7,7 +7,7 @@
 
 [Demo](https://bjl-jobly-frontend.surge.sh/)
 
-## Run on your machine
+### Run on your machine
 
 you'll need to clone the frontend and backend to run simultaneously on different ports.
 
@@ -19,7 +19,7 @@ Backend: `nodemon` set to port 3001
 ```
 
 
-## Future Features to Add
+### Future Features to Add
 
 * thorough testing
 * live search
